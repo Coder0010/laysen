@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AdminLeadController;
 use App\Http\Controllers\Admin\AdminSectionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => config('app.debug') ? phpinfo() : redirect(route('businesses.index')));
+Route::get('/', fn() => redirect(route('sections.index')));
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', fn() => redirect()->route('sections.index'))->name('dashboard');

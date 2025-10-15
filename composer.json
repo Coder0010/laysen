@@ -92,12 +92,6 @@
             "php-http/discovery": true
         }
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../starter-core-kit"
-        }
-    ],
     "minimum-stability": "stable",
     "prefer-stable": true
 }
