@@ -13,6 +13,8 @@ return [
     |
     */
 
+    'full_auth_modules' => env('APP_FULL_AUTH_MODULES', 'false'),
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*

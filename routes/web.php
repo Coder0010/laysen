@@ -1,20 +1,17 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\AdminBusinessController;
+use App\Http\Controllers\Admin\AdminLeadController;
+use App\Http\Controllers\Admin\AdminSectionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', fn() => config('app.debug') ? phpinfo() : redirect(route('businesses.index')));
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard', fn() => redirect()->route('sections.index'))->name('dashboard');
+    Route::resource('businesses', AdminBusinessController::class);
+    Route::resource('/leads', AdminLeadController::class)->only(['index', 'destroy']);
+    Route::resource('/sections', AdminSectionController::class)->only(['index', 'update']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -1,0 +1,46 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Section;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class SectionSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $data = [
+            [
+                'slug' => 'home',
+                'name_en' => 'Home',
+                'name_ar' => 'الرئيسية',
+                'description_en' => 'Home Description',
+                'description_ar' => 'وادي الليسين هو مشروع تطوير عقاري متعدد الاستخدامات في حي أم الحمام الغربي بالرياض، يضم مبانٍ تجارية وسكنية. بالإضافة إلى مساحات عامة ومناطق متنوعة مثل المطاعم والكافيتريات وخدمات العناية الشخصية. ويهدف ليكون وجهة متكاملة تجمع بين العمل والترفيه في مكان واحد.'
+            ],
+            [
+                'slug' => 'about',
+                'name_en' => 'About us',
+                'name_ar' => 'عنا',
+                'description_en' => 'About Us',
+                'description_ar' => 'ارسل استفسارك وسيقوم فريقنا بالاتصال بك'
+            ],
+            [
+                'slug' => 'vision',
+                'name_en' => 'vision',
+                'name_ar' => 'الرؤية',
+                'description_en' => 'vision',
+                'description_ar' => 'الرؤية الرؤية الرؤية'
+            ],
+        ];
+
+        Section::upsert(
+            $data,
+            ['slug'],
+            ['name_en', 'name_ar', 'description_en', 'description_ar'] // columns to update
+        );
+    }
+}
