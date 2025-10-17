@@ -19,7 +19,7 @@ class LeadStoreRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'email' => [
                 'required',
@@ -27,19 +27,19 @@ class LeadStoreRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'phone' => [
                 'required',
                 'string',
                 'max:20',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'message' => [
                 'required',
                 'string',
                 'max:1000',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
 
         ];

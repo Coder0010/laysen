@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class AdminLeadController extends Controller
 {
-    public function __construct(public LeadService $service)
-    {
-    }
+    public function __construct(public LeadService $service) {}
 
     /**
      * Handle the incoming request.
@@ -20,6 +18,7 @@ class AdminLeadController extends Controller
     {
         $perPage = $request->input('per_page', $this->service->getPerPage());
         $data = $this->service->getFromCache()->paginateOnCollection($perPage);
+
         return view('admin.lead.index', compact('data'));
     }
 

@@ -21,7 +21,7 @@ class AdminSectionRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'name_ar' => [
                 'required',
@@ -31,12 +31,12 @@ class AdminSectionRequest extends FormRequest
             'description_en' => [
                 'required',
                 'string',
-                'max:1000'
+                'max:1000',
             ],
             'description_ar' => [
                 'required',
                 'string',
-                'max:1000'
+                'max:1000',
             ],
         ];
     }
@@ -46,7 +46,7 @@ class AdminSectionRequest extends FormRequest
         $id = $this->route('id') ?? $this->route('business');
 
         $modalName = $id
-            ? 'edit-popup-model-' . $id
+            ? 'edit-popup-model-'.$id
             : 'create-popup-model';
 
         throw new HttpResponseException(
@@ -58,5 +58,4 @@ class AdminSectionRequest extends FormRequest
         );
 
     }
-
 }

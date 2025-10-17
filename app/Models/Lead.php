@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use MkamelMasoud\StarterCoreKit\Entity;
+use MkamelMasoud\StarterCoreKit\Core\BaseEntity;
 
-class Lead extends Entity
+class Lead extends BaseEntity
 {
     protected $fillable = [
         'name',
@@ -12,5 +12,4 @@ class Lead extends Entity
         'phone',
         'message',
     ];
-
 }

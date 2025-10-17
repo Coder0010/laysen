@@ -22,50 +22,50 @@ class AdminBusinessRequest extends FormRequest
         return [
             'type' => [
                 'required',
-                new Enum(BusinessTypeEnum::class)
+                new Enum(BusinessTypeEnum::class),
             ],
             'name_en' => [
                 'required',
                 'string',
                 'max:255',
                 Rule::unique('businesses')->ignore($this->route('business')),
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'name_ar' => [
                 'required',
                 'string',
                 'max:255',
                 Rule::unique('businesses')->ignore($this->route('business')),
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'address_en' => [
                 'required',
                 'string',
                 'max:255',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'address_ar' => [
                 'required',
                 'string',
                 'max:255',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'phone' => [
                 'required',
                 'string',
-                'max:20'
+                'max:20',
             ],
             'description_en' => [
                 'required',
                 'string',
                 'max:1000',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'description_ar' => [
                 'required',
                 'string',
                 'max:1000',
-                new NoHtmlRule()
+                new NoHtmlRule,
             ],
             'file' => [
                 'nullable',
@@ -74,7 +74,7 @@ class AdminBusinessRequest extends FormRequest
             'location' => [
                 'nullable',
                 'string',
-            ]
+            ],
         ];
     }
 
@@ -83,7 +83,7 @@ class AdminBusinessRequest extends FormRequest
         $id = $this->route('id') ?? $this->route('business');
 
         $modalName = $id
-            ? 'edit-popup-model-' . $id
+            ? 'edit-popup-model-'.$id
             : 'create-popup-model';
 
         throw new HttpResponseException(
@@ -95,5 +95,4 @@ class AdminBusinessRequest extends FormRequest
         );
 
     }
-
 }

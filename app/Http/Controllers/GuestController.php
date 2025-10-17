@@ -22,9 +22,11 @@ class GuestController extends Controller
         $dto = LeadDto::fromRequest($request);
         try {
             app(LeadService::class)->store($dto);
+
             return $this->success(message: 'Thank you for contacting us!');
         } catch (\Exception $e) {
             report($e);
+
             return $this->error(message: 'Failed To Create Record.', statusCode: 422);
         }
     }
@@ -34,14 +36,15 @@ class GuestController extends Controller
         $service = app(BusinessService::class);
         $perPage = $request->input('per_page', $service->getPerPage());
         $collection = $service->getFromCache()->paginateOnCollection($perPage);
+
         return BusinessResource::collection($collection);
     }
 
     public function listBusinessTypes()
     {
-        return collect(BusinessTypeEnum::options())->map(function($option) {
+        return collect(BusinessTypeEnum::options())->map(function ($option) {
             return [
-                'id'      => $option['value'],
+                'id' => $option['value'],
                 'name_en' => $option['label'],
                 'name_ar' => $option['label'],
             ];
@@ -54,7 +57,7 @@ class GuestController extends Controller
             'per_page' => 'nullable|integer|min:1|max:100',
             'type' => [
                 'required',
-                new Enum(BusinessTypeEnum::class)
+                new Enum(BusinessTypeEnum::class),
             ],
         ]);
 
@@ -62,12 +65,14 @@ class GuestController extends Controller
             $service = app(BusinessService::class);
             $perPage = $request->input('per_page', $service->getPerPage());
             $collection = $service->getFromCache('type', '=', $request->type)->paginateOnCollection($perPage);
+
             return BusinessResource::collection($collection);
         } catch (RecordNotFoundException $e) {
-            return redirect()->back()->with("error", $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         } catch (\Exception $e) {
             report($e);
-            return redirect()->back()->with("error", "Failed To Update Record.");
+
+            return redirect()->back()->with('error', 'Failed To Update Record.');
         }
 
     }

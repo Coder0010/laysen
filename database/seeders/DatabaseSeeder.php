@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Business;
 use App\Models\Lead;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,13 +17,13 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@example.com',
-            'password' => 'Pa$$w0rd!'
+            'password' => 'Pa$$w0rd!',
         ]);
 
-         Lead::factory(50)->create();
-         Business::factory(50)->create();
-         $this->call([
-             SectionSeeder::class,
-         ]);
+        Lead::factory(50)->create();
+        Business::factory(50)->create();
+        $this->call([
+            SectionSeeder::class,
+        ]);
     }
 }

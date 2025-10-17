@@ -4,11 +4,10 @@ namespace App\Services;
 
 use App\Http\DataToObjects\BusinessDto;
 use App\Repositories\Contracts\BusinessRepositoryContract;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\RecordNotFoundException;
 use Illuminate\Support\Facades\Storage;
-use MkamelMasoud\StarterCoreKit\BaseDto;
-use MkamelMasoud\StarterCoreKit\BaseService;
+use MkamelMasoud\StarterCoreKit\Core\BaseDto;
+use MkamelMasoud\StarterCoreKit\Core\BaseService;
 
 /**
  * @property \App\Repositories\Eloquents\BusinessRepositoryEloquent $repository
@@ -34,12 +33,13 @@ class BusinessService extends BaseService
     protected function beforeSaveAction(BaseDto $dto, ?string $existingFile = null): BaseDto
     {
         $dto->file = $this->handleFileUpload($dto->file, $existingFile);
+
         return $dto;
     }
 
     protected function beforeDelete($model): void
     {
-        if (!empty($model->file) && Storage::disk('public')->exists($model->file)) {
+        if (! empty($model->file) && Storage::disk('public')->exists($model->file)) {
             Storage::disk('public')->delete($model->file);
         }
     }
@@ -48,10 +48,10 @@ class BusinessService extends BaseService
     {
         $model = $this->repository->where('type', '=', $type);
 
-        if (!$model) {
+        if (! $model) {
             throw new RecordNotFoundException("Record with type {$type} not found");
         }
+
         return $model->all()->latest()->get();
     }
-
 }

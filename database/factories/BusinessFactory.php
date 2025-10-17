@@ -4,8 +4,6 @@ namespace Database\Factories;
 
 use App\Http\Enums\BusinessTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Business>
@@ -32,5 +30,4 @@ class BusinessFactory extends Factory
             'location' => fake()->city(),
         ];
     }
-
 }

@@ -8,6 +8,7 @@ enum BusinessTypeEnum: int
     case COMPANIES = 2;
     case STORE = 3;
     case RESTAURANT = 4;
+
     public function label(): string
     {
         return match ($this) {
@@ -20,11 +21,9 @@ enum BusinessTypeEnum: int
 
     public static function options(): array
     {
-        return array_map(fn($case) => [
+        return array_map(fn ($case) => [
             'value' => $case->value,
             'label' => $case->label(),
         ], self::cases());
     }
-
-
 }

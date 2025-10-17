@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Http\Enums\BusinessTypeEnum;
-use MkamelMasoud\StarterCoreKit\Entity;
+use MkamelMasoud\StarterCoreKit\Core\BaseEntity;
 
-class Business extends Entity
+class Business extends BaseEntity
 {
     protected $fillable = [
         'type',

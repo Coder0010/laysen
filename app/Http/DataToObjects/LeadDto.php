@@ -2,13 +2,15 @@
 
 namespace App\Http\DataToObjects;
 
-use MkamelMasoud\StarterCoreKit\BaseDto;
+use MkamelMasoud\StarterCoreKit\Core\BaseDto;
 
 class LeadDto extends BaseDto
 {
     public string $name = '';
-    public string $email = '';
-    public string $phone = '';
-    public ?string $message = null;
 
+    public string $email = '';
+
+    public string $phone = '';
+
+    public ?string $message = null;
 }

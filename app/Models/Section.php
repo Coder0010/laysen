@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use MkamelMasoud\StarterCoreKit\Entity;
+use MkamelMasoud\StarterCoreKit\Core\BaseEntity;
 
-class Section extends Entity
+class Section extends BaseEntity
 {
     protected $fillable = [
         'slug',
@@ -17,9 +17,8 @@ class Section extends Entity
     protected static function booted()
     {
         parent::booted();
-//        static::creating(function ($model) {
-//            $model->slug = str($model->name_en)->slug();
-//        });
+        static::creating(function ($model) {
+            $model->slug = str($model->name_en)->slug();
+        });
     }
-
 }

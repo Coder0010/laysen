@@ -18,10 +18,12 @@ class AppServiceProvider extends ServiceProvider
             if ($condition) {
                 $callback();
             }
+
             return Route::getRoutes();
         });
         Collection::macro('paginateOnCollection', function ($perPage, $pageName = 'page', $page = null) {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+
             return new LengthAwarePaginator(
                 $this->forPage($page, $perPage),
                 $this->count(),

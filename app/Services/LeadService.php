@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Http\DataToObjects\LeadDto;
 use App\Repositories\Contracts\LeadRepositoryContract;
-use MkamelMasoud\StarterCoreKit\BaseService;
+use MkamelMasoud\StarterCoreKit\Core\BaseService;
 
 /**
  * @property \App\Repositories\Eloquents\LeadRepositoryEloquent $repository

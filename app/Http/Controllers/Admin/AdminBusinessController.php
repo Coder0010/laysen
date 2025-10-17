@@ -12,14 +12,13 @@ use Illuminate\Http\Request;
 
 class AdminBusinessController extends Controller
 {
-    public function __construct(public BusinessService $service)
-    {
-    }
+    public function __construct(public BusinessService $service) {}
 
     public function index(Request $request)
     {
         $perPage = $request->input('per_page', $this->service->getPerPage());
         $data = $this->service->getFromCache()->paginateOnCollection($perPage);
+
         return view('admin.business.index', compact('data'));
     }
 
@@ -28,9 +27,11 @@ class AdminBusinessController extends Controller
         $dto = BusinessDto::fromRequest($request);
         try {
             $this->service->store($dto);
+
             return redirect()->back()->with('success', 'Record Created successfully.');
         } catch (\Exception $e) {
             report($e);
+
             return redirect()->back()->with('error', 'Failed To Create Record.');
         }
     }
@@ -41,12 +42,14 @@ class AdminBusinessController extends Controller
 
         try {
             $model = $this->service->update($id, $dto);
-            return redirect()->back()->with("success", "Record {$model->name_en} Updated Successfully.");
+
+            return redirect()->back()->with('success', "Record {$model->name_en} Updated Successfully.");
         } catch (RecordNotFoundException $e) {
-            return redirect()->back()->with("error", $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         } catch (\Exception $e) {
             report($e);
-            return redirect()->back()->with("error", "Failed To Update Record.");
+
+            return redirect()->back()->with('error', 'Failed To Update Record.');
         }
     }
 

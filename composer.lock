@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9aafbe83bdfd539005017f48bfe27062",
+    "content-hash": "e55e3b96776b72dc95f98a1a11007708",
     "packages": [
         {
             "name": "brick/math",
@@ -2011,11 +2011,17 @@
         },
         {
             "name": "mkamelmasoud/starter-core-kit",
-            "version": "dev-main",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Coder0010/starter-core-kit.git",
+                "reference": "b143ca5a97484a6675929f232b56ffc401802608"
+            },
             "dist": {
-                "type": "path",
-                "url": "../starter-core-kit",
-                "reference": "573bd3c1a62f5eac7c9d74ca919a2f91393830d1"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Coder0010/starter-core-kit/zipball/b143ca5a97484a6675929f232b56ffc401802608",
+                "reference": "b143ca5a97484a6675929f232b56ffc401802608",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
@@ -2037,16 +2043,7 @@
                     "MkamelMasoud\\StarterCoreKit\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "MkamelMasoud\\StarterCoreKit\\Tests\\": "src/tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2064,9 +2061,11 @@
                 "package",
                 "starter-kit"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Coder0010/starter-core-kit/issues",
+                "source": "https://github.com/Coder0010/starter-core-kit/tree/v1.0.0"
+            },
+            "time": "2025-10-17T18:41:43+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -9672,14 +9671,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "mkamelmasoud/starter-core-kit": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
