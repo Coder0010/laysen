@@ -14,25 +14,46 @@ class SectionSeeder extends Seeder
     {
         $data = [
             [
-                'slug' => 'home',
-                'name_en' => 'Home',
-                'name_ar' => 'الرئيسية',
+                'slug'           => 'section-1',
+                'name_en'        => 'Home',
+                'name_ar'        => 'الرئيسية',
                 'description_en' => 'Home Description',
                 'description_ar' => 'وادي الليسين هو مشروع تطوير عقاري متعدد الاستخدامات في حي أم الحمام الغربي بالرياض، يضم مبانٍ تجارية وسكنية. بالإضافة إلى مساحات عامة ومناطق متنوعة مثل المطاعم والكافيتريات وخدمات العناية الشخصية. ويهدف ليكون وجهة متكاملة تجمع بين العمل والترفيه في مكان واحد.',
             ],
             [
-                'slug' => 'about',
-                'name_en' => 'About us',
-                'name_ar' => 'عنا',
+                'slug'           => 'section-2',
+                'name_en'        => 'About us',
+                'name_ar'        => 'عنا',
                 'description_en' => 'About Us',
                 'description_ar' => 'ارسل استفسارك وسيقوم فريقنا بالاتصال بك',
             ],
             [
-                'slug' => 'vision',
-                'name_en' => 'vision',
-                'name_ar' => 'الرؤية',
+                'slug'           => 'section-3',
+                'name_en'        => 'vision',
+                'name_ar'        => 'الرؤية',
                 'description_en' => 'vision',
                 'description_ar' => 'الرؤية الرؤية الرؤية',
+            ],
+            [
+                'slug'           => 'section-4',
+                'name_en'        => 'section-4-name-en',
+                'name_ar'        => 'section-4-name-ar',
+                'description_en' => 'section-4-description-en',
+                'description_ar' => 'section-4-description-ar',
+            ],
+            [
+                'slug'           => 'section-5',
+                'name_en'        => 'section-5-name-en',
+                'name_ar'        => 'section-5-name-ar',
+                'description_en' => 'section-5-description-en',
+                'description_ar' => 'section-5-description-ar',
+            ],
+            [
+                'slug'           => 'section-5',
+                'name_en'        => 'section-5-name-en',
+                'name_ar'        => 'section-5-name-ar',
+                'description_en' => 'section-5-description-en',
+                'description_ar' => 'section-5-description-ar',
             ],
         ];
 

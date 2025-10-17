@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use MkamelMasoud\StarterCoreKit\Rules\NoHtmlRule;
+use MkamelMasoud\StarterCoreKit\Rules\Validation\NoHtmlRule;
 
 class LeadStoreRequest extends FormRequest
 {

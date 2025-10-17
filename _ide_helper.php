@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 12.34.0.
+ * Generated for Laravel 12.35.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1618,11 +1618,15 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * {@inheritdoc}
+         * Finds an entry of the container by its identifier and returns it.
          *
          * @template TClass of object
          * @param string|class-string<TClass> $id
          * @return ($id is class-string<TClass> ? TClass : mixed)
+         * @param string $id Identifier of the entry to look for.
+         * @throws NotFoundExceptionInterface  No entry was found for **this** identifier.
+         * @throws ContainerExceptionInterface Error while retrieving the entry.
+         * @return mixed Entry.
          * @static
          */
         public static function get($id)
@@ -6734,6 +6738,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param array $keys
          * @return \Illuminate\Encryption\Encrypter
+         * @throws \RuntimeException
          * @static
          */
         public static function previousKeys($keys)
@@ -7695,6 +7700,7 @@ namespace Illuminate\Support\Facades {
          * @param string|float|int|bool|null $value
          * @param bool $binary
          * @return string
+         * @throws \RuntimeException
          * @static
          */
         public static function escape($value, $binary = false)
@@ -17877,12 +17883,12 @@ namespace Illuminate\Support\Facades {
         /**
          * @see \MkamelMasoud\StarterCoreKit\Providers\MacroServiceProvider::registerRouteMacros()
          * @param mixed $condition
-         * @param callable $callback
+         * @param callable $callBack
          * @static
          */
-        public static function when($condition, $callback)
+        public static function when($condition, $callBack)
         {
-            return \Illuminate\Routing\Router::when($condition, $callback);
+            return \Illuminate\Routing\Router::when($condition, $callBack);
         }
 
             }
@@ -23595,12 +23601,12 @@ namespace Illuminate\Support {
 
         /**
          * @see \MkamelMasoud\StarterCoreKit\Providers\MacroServiceProvider::registerCollectionMacros()
-         * @param mixed $perPage
-         * @param mixed $pageName
-         * @param mixed $page
+         * @param int $perPage
+         * @param string $pageName
+         * @param int|null $page
          * @static
          */
-        public static function paginateOnCollection($perPage, $pageName = 'page', $page = null)
+        public static function paginateOnCollection($perPage = 10, $pageName = 'page', $page = null)
         {
             return \Illuminate\Support\Collection::paginateOnCollection($perPage, $pageName, $page);
         }
@@ -23686,12 +23692,12 @@ namespace Illuminate\Routing {
         /**
          * @see \MkamelMasoud\StarterCoreKit\Providers\MacroServiceProvider::registerRouteMacros()
          * @param mixed $condition
-         * @param callable $callback
+         * @param callable $callBack
          * @static
          */
-        public static function when($condition, $callback)
+        public static function when($condition, $callBack)
         {
-            return \Illuminate\Routing\Router::when($condition, $callback);
+            return \Illuminate\Routing\Router::when($condition, $callBack);
         }
 
             }

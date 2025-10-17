@@ -15,15 +15,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@example.com',
+            'name'     => 'admin',
+            'email'    => 'admin@example.com',
             'password' => 'Pa$$w0rd!',
         ]);
 
-        Lead::factory(50)->create();
-        Business::factory(50)->create();
+        Lead::factory(5)->create();
+        Business::factory(5)->create();
         $this->call([
             SectionSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }

@@ -59,6 +59,11 @@
                             />
                         @endif
 
+                        @if (in_array('setting_edit', $actions))
+                            <x-admin.settings.actions.edit-action
+                                :row="$row"
+                            />
+                        @endif
                         @if (in_array('delete', $actions) && $destroyRouteName && Route::has($destroyRouteName))
                             <x-danger-button
                                 x-data

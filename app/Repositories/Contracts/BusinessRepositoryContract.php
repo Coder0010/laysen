@@ -2,6 +2,6 @@
 
 namespace App\Repositories\Contracts;
 
-use MkamelMasoud\StarterCoreKit\Repositories\Contracts\BaseRepositoryContract;
+use MkamelMasoud\StarterCoreKit\Contracts\Repositories\BaseRepositoryContract;
 
 interface BusinessRepositoryContract extends BaseRepositoryContract {}

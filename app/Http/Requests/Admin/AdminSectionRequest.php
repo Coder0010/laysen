@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use MkamelMasoud\StarterCoreKit\Rules\NoHtmlRule;
+use MkamelMasoud\StarterCoreKit\Rules\Validation\NoHtmlRule;
 
 class AdminSectionRequest extends FormRequest
 {
@@ -46,7 +46,7 @@ class AdminSectionRequest extends FormRequest
         $id = $this->route('id') ?? $this->route('business');
 
         $modalName = $id
-            ? 'edit-popup-model-'.$id
+            ? 'edit-popup-model-' . $id
             : 'create-popup-model';
 
         throw new HttpResponseException(

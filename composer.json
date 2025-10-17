@@ -9,8 +9,9 @@
         "php": "^8.2",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "mkamelmasoud/starter-core-kit": "^1.0",
-        "predis/predis": "^3.0"
+        "mkamelmasoud/starter-core-kit": "^1.3.0",
+        "predis/predis": "^3.0",
+        "tucker-eric/eloquentfilter": "^3.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",
@@ -28,7 +29,7 @@
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-strict-rules": "^2.0",
-        "wikimedia/composer-merge-plugin": "*"
+        "wikimedia/composer-merge-plugin": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -49,8 +50,7 @@
             "@php artisan key:generate",
             "@php artisan migrate --force",
             "npm install",
-            "npm run build",
-            "./vendor/bin/pint"
+            "npm run build"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",

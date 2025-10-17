@@ -4,8 +4,11 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\Business;
 use App\Repositories\Contracts\BusinessRepositoryContract;
-use MkamelMasoud\StarterCoreKit\Repositories\BaseEloquentRepository;
+use MkamelMasoud\StarterCoreKit\Core\Repositories\BaseEloquentRepository;
 
+/**
+ * @extends BaseEloquentRepository<Business>
+ */
 class BusinessRepositoryEloquent extends BaseEloquentRepository implements BusinessRepositoryContract
 {
     /**

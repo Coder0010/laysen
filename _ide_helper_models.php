@@ -13,6 +13,7 @@
 
 namespace App\Models{
 /**
+ * @property string|null $file
  * @property int $id
  * @property \App\Http\Enums\BusinessTypeEnum|null $type
  * @property string|null $name_en
@@ -22,7 +23,6 @@ namespace App\Models{
  * @property string|null $phone
  * @property string|null $description_en
  * @property string|null $description_ar
- * @property string|null $file
  * @property string|null $location
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at

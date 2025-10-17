@@ -5,19 +5,111 @@ namespace App\Http\Controllers;
 use App\Http\DataToObjects\LeadDto;
 use App\Http\Enums\BusinessTypeEnum;
 use App\Http\Requests\LeadStoreRequest;
+use App\Http\Requests\ListBusinessByTypeRequest;
+use App\Http\Requests\ListSectionRequest;
 use App\Http\Resources\BusinessResource;
+use App\Http\Resources\SectionResource;
+use App\Http\Resources\SettingResource;
 use App\Services\BusinessService;
 use App\Services\LeadService;
+use App\Services\SectionService;
+use App\Services\SettingService;
 use Illuminate\Database\RecordNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Enum;
-use MkamelMasoud\StarterCoreKit\Traits\ApiResponsesTrait;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use MkamelMasoud\StarterCoreKit\Traits\Api\ApiResponsesTrait;
 
 class GuestController extends Controller
 {
     use ApiResponsesTrait;
 
-    public function storeLead(LeadStoreRequest $request)
+    /**
+     * @return array<int, array{id: int|string, name_en: string, name_ar: string}>
+     */
+    public function listBusinessTypes(): array
+    {
+        return BusinessTypeEnum::options();
+    }
+
+    public function listBusinessByType(ListBusinessByTypeRequest $request): AnonymousResourceCollection|JsonResponse
+    {
+        try {
+            $service = app(BusinessService::class);
+            $perPage = $request->input('per_page', $service->getRecordsLimit());
+            $collection = $service
+                ->fetchData(
+                    filters: [
+                        'type' => $request->type,
+                    ]
+                )
+                ->when(
+                    $request->boolean('is_paginated'),
+                    fn($q) => $q->paginateOnCollection(perPage: $perPage)
+                );
+
+            return BusinessResource::collection($collection);
+        } catch (RecordNotFoundException $e) {
+            return $this->error(message: $e->getMessage(), statusCode: 404);
+        } catch (\Exception $e) {
+            report($e);
+
+            return $this->error(message: 'Failed To Fetch Records.', statusCode: 500);
+        }
+    }
+
+    public function listSections(ListSectionRequest $request)
+    {
+        try {
+            $service = app(SectionService::class);
+            $perPage = $request->input('per_page', $service->getRecordsLimit());
+            $collection = $service->fetchData(
+                filters: [
+                    'slug' => $request->slug,
+                ]
+            )
+                ->when(
+                    $request->boolean('is_paginated'),
+                    fn($q) => $q->paginateOnCollection(perPage: $perPage)
+                );
+
+            return SectionResource::collection($collection);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return $this->error(message: 'Failed To Fetch Records.', statusCode: 500);
+        }
+    }
+
+    public function listSettings(Request $request)
+    {
+        $request->validate([
+        ]);
+        try {
+            $service = app(SettingService::class);
+            $perPage = $request->input('per_page', $service->getRecordsLimit());
+            $collection = $service
+                ->fetchData(
+                    filters: [
+                        'key' => $request->key,
+                    ]
+                )
+                ->when(
+                    $request->boolean('is_paginated'),
+                    fn($q) => $q->paginateOnCollection(perPage: $perPage)
+                );
+
+            return SettingResource::collection($collection);
+        } catch (RecordNotFoundException $e) {
+            return $this->error(message: $e->getMessage(), statusCode: 404);
+        } catch (\Exception $e) {
+            report($e);
+
+            return $this->error(message: 'Failed To Fetch Records.', statusCode: 500);
+        }
+    }
+
+    public function storeLead(LeadStoreRequest $request): JsonResponse
     {
         $dto = LeadDto::fromRequest($request);
         try {
@@ -31,49 +123,4 @@ class GuestController extends Controller
         }
     }
 
-    public function listBusiness(Request $request)
-    {
-        $service = app(BusinessService::class);
-        $perPage = $request->input('per_page', $service->getPerPage());
-        $collection = $service->getFromCache()->paginateOnCollection($perPage);
-
-        return BusinessResource::collection($collection);
-    }
-
-    public function listBusinessTypes()
-    {
-        return collect(BusinessTypeEnum::options())->map(function ($option) {
-            return [
-                'id' => $option['value'],
-                'name_en' => $option['label'],
-                'name_ar' => $option['label'],
-            ];
-        })->all();
-    }
-
-    public function showBusinessByType(Request $request)
-    {
-        $request->validate([
-            'per_page' => 'nullable|integer|min:1|max:100',
-            'type' => [
-                'required',
-                new Enum(BusinessTypeEnum::class),
-            ],
-        ]);
-
-        try {
-            $service = app(BusinessService::class);
-            $perPage = $request->input('per_page', $service->getPerPage());
-            $collection = $service->getFromCache('type', '=', $request->type)->paginateOnCollection($perPage);
-
-            return BusinessResource::collection($collection);
-        } catch (RecordNotFoundException $e) {
-            return redirect()->back()->with('error', $e->getMessage());
-        } catch (\Exception $e) {
-            report($e);
-
-            return redirect()->back()->with('error', 'Failed To Update Record.');
-        }
-
-    }
 }

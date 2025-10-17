@@ -4,8 +4,11 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\Lead;
 use App\Repositories\Contracts\LeadRepositoryContract;
-use MkamelMasoud\StarterCoreKit\Repositories\BaseEloquentRepository;
+use MkamelMasoud\StarterCoreKit\Core\Repositories\BaseEloquentRepository;
 
+/**
+ * @extends BaseEloquentRepository<Lead>
+ */
 class LeadRepositoryEloquent extends BaseEloquentRepository implements LeadRepositoryContract
 {
     /**

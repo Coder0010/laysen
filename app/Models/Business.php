@@ -2,9 +2,21 @@
 
 namespace App\Models;
 
-use App\Http\Enums\BusinessTypeEnum;
+use Illuminate\Support\Carbon;
 use MkamelMasoud\StarterCoreKit\Core\BaseEntity;
 
+/**
+ * @property int $id
+ * @property string $slug
+ * @property string|null $name_en
+ * @property string|null $name_ar
+ * @property string|null $description_en
+ * @property string|null $description_ar
+ * @property string|null $file
+ * @property Carbon|null $deleted_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class Business extends BaseEntity
 {
     protected $fillable = [
@@ -20,10 +32,7 @@ class Business extends BaseEntity
         'location',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'type' => BusinessTypeEnum::class,
-        ];
-    }
+    protected $casts = [
+        'type' => \App\Http\Enums\BusinessTypeEnum::class,
+    ];
 }

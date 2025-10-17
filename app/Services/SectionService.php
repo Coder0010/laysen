@@ -3,11 +3,19 @@
 namespace App\Services;
 
 use App\Http\DataToObjects\SectionDto;
+use App\Models\Section;
 use App\Repositories\Contracts\SectionRepositoryContract;
+use App\Repositories\Eloquents\SectionRepositoryEloquent;
 use MkamelMasoud\StarterCoreKit\Core\BaseService;
 
 /**
- * @property \App\Repositories\Eloquents\SectionRepositoryEloquent $repository
+ * @extends BaseService<
+ *      SectionRepositoryContract,
+ *      SectionDto,
+ *      Section
+ *  >
+ *
+ * @property SectionRepositoryEloquent $repository
  */
 class SectionService extends BaseService
 {

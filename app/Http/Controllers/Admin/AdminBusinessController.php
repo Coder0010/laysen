@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\DataToObjects\BusinessDto;
 use App\Http\Requests\Admin\AdminBusinessRequest;
 use App\Services\BusinessService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\RecordNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,15 +15,20 @@ class AdminBusinessController extends Controller
 {
     public function __construct(public BusinessService $service) {}
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
-        $perPage = $request->input('per_page', $this->service->getPerPage());
-        $data = $this->service->getFromCache()->paginateOnCollection($perPage);
+        $data = $this->service
+            ->fetchData(
+                cachePrefix: 'admin'
+            )
+            ->paginateOnCollection(
+                perPage: $this->service->getRecordsLimit()
+            );
 
         return view('admin.business.index', compact('data'));
     }
 
-    public function store(AdminBusinessRequest $request)
+    public function store(AdminBusinessRequest $request): RedirectResponse
     {
         $dto = BusinessDto::fromRequest($request);
         try {
@@ -55,7 +61,7 @@ class AdminBusinessController extends Controller
 
     public function destroy(int $id): RedirectResponse
     {
-        $deleted = $this->service->forceDelete($id);
+        $deleted = $this->service->delete($id, 'force');
 
         return redirect()
             ->back()

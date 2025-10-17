@@ -3,11 +3,19 @@
 namespace App\Services;
 
 use App\Http\DataToObjects\LeadDto;
+use App\Models\Lead;
 use App\Repositories\Contracts\LeadRepositoryContract;
+use App\Repositories\Eloquents\LeadRepositoryEloquent;
 use MkamelMasoud\StarterCoreKit\Core\BaseService;
 
 /**
- * @property \App\Repositories\Eloquents\LeadRepositoryEloquent $repository
+ * @extends BaseService<
+ *       LeadRepositoryContract,
+ *       LeadDto,
+ *       Lead
+ *   >
+ *
+ * @property LeadRepositoryEloquent $repository
  */
 class LeadService extends BaseService
 {

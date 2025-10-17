@@ -4,8 +4,11 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\Section;
 use App\Repositories\Contracts\SectionRepositoryContract;
-use MkamelMasoud\StarterCoreKit\Repositories\BaseEloquentRepository;
+use MkamelMasoud\StarterCoreKit\Core\Repositories\BaseEloquentRepository;
 
+/**
+ * @extends BaseEloquentRepository<Section>
+ */
 class SectionRepositoryEloquent extends BaseEloquentRepository implements SectionRepositoryContract
 {
     /**

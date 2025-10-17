@@ -18,16 +18,16 @@ class BusinessFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => fake()->randomElement(BusinessTypeEnum::cases()),
-            'name_en' => fake()->name(),
-            'name_ar' => fake()->name(),
-            'address_en' => fake()->address(),
-            'address_ar' => fake()->address(),
-            'phone' => fake()->phoneNumber(),
+            'type'           => fake()->randomElement(BusinessTypeEnum::cases()),
+            'name_en'        => fake()->name(),
+            'name_ar'        => fake()->name(),
+            'address_en'     => fake()->address(),
+            'address_ar'     => fake()->address(),
+            'phone'          => fake()->phoneNumber(),
             'description_en' => fake()->paragraph(),
             'description_ar' => fake()->paragraph(),
-            'file' => fake()->imageUrl(),
-            'location' => fake()->city(),
+            'file'           => fake()->imageUrl(),
+            'location'       => fake()->city(),
         ];
     }
 }

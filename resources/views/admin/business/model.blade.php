@@ -32,10 +32,10 @@
                     </option>
                     @foreach (\App\Http\Enums\BusinessTypeEnum::options() as $option)
                         <option
-                            value="{{ $option['value'] }}"
-                            @selected(old('type', $row?->type->value) == $option['value'])
+                            value="{{ $option['id'] }}"
+                            @selected(old('type', $row?->type->value) == $option['id'])
                         >
-                            {{ $option['label'] }}
+                            {{ $option['name_en'] }}
                         </option>
                     @endforeach
                 </select>

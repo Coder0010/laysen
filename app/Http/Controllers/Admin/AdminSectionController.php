@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\DataToObjects\SectionDto;
 use App\Http\Requests\Admin\AdminSectionRequest;
 use App\Services\SectionService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\RecordNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,10 +15,15 @@ class AdminSectionController extends Controller
 {
     public function __construct(public SectionService $service) {}
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
-        $perPage = $request->input('per_page', $this->service->getPerPage());
-        $data = $this->service->getFromCache()->paginateOnCollection($perPage);
+        $data = $this->service
+            ->fetchData(
+                cachePrefix: 'admin'
+            )
+            ->paginateOnCollection(
+                perPage: $this->service->getRecordsLimit()
+            );
 
         return view('admin.sections.index', compact('data'));
     }
