@@ -7,6 +7,7 @@ use App\Http\Enums\BusinessTypeEnum;
 use App\Http\Requests\LeadStoreRequest;
 use App\Http\Requests\ListBusinessByTypeRequest;
 use App\Http\Requests\ListSectionRequest;
+use App\Http\Requests\ListSettingRequest;
 use App\Http\Resources\BusinessResource;
 use App\Http\Resources\SectionResource;
 use App\Http\Resources\SettingResource;
@@ -81,10 +82,8 @@ class GuestController extends Controller
         }
     }
 
-    public function listSettings(Request $request)
+    public function listSettings(ListSettingRequest $request)
     {
-        $request->validate([
-        ]);
         try {
             $service = app(SettingService::class);
             $perPage = $request->input('per_page', $service->getRecordsLimit());

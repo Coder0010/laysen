@@ -14,8 +14,7 @@
                     <x-session-status class="p-2"/>
                     <div class="inline-block min-w-full align-middle w-full">
                         <div class="overflow-hidden border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm text-gray-900 dark:text-gray-100">
-                            <x-table :tableColumns="['name_en', 'name_ar']"
-                                     :showModelColumns="['name_en', 'name_ar', 'slug', 'description_en', 'description_ar']"
+                            <x-table :tableColumns="['slug', 'name_en', 'name_ar']"
                                      :data="$data"
                                      :actions="['section_edit', 'delete']"
                             ></x-table>

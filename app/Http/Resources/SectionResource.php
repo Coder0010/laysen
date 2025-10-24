@@ -22,6 +22,8 @@ class SectionResource extends JsonResource
             'slug'       => $this->slug,
             'name_en'    => $this->name_en,
             'name_ar'    => $this->name_ar,
+            'description_en'    => $this->description_en,
+            'description_ar'    => $this->description_ar,
         ];
     }
 }

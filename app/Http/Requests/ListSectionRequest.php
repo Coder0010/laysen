@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Traits\PaginatableTrait;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class ListSectionRequest extends FormRequest
 {
@@ -24,6 +25,7 @@ class ListSectionRequest extends FormRequest
             'slug.*' => [
                 'required',
                 'exists:sections,slug',
+                'distinct',
             ],
         ], $this->paginationRules());
     }

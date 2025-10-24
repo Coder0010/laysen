@@ -18,11 +18,15 @@ class ListSettingRequest extends FormRequest
     {
         return array_merge([
             'key' => [
+                'sometimes',
+                'array'
+            ],
+            'key.*' => [
                 'required',
                 'string',
                 'exists:settings,key',
                 'max:255',
-                'regex:/^[a-zA-Z0-9_]+$/'
+                'distinct'
             ],
         ], $this->paginationRules());
     }
