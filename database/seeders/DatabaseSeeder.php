@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Lead::factory(5)->create();
-        Business::factory(5)->create();
+        Business::factory(5)->create()->each(function ($model, $index) {
+            $model->name_en = 'Business-' . ($index + 1);
+            $model->save();
+        });
         $this->call([
             SectionSeeder::class,
             SettingSeeder::class,
