@@ -20,8 +20,11 @@ class DatabaseSeeder extends Seeder
             'password' => 'Pa$$w0rd!',
         ]);
 
-        Lead::factory(5)->create();
-        Business::factory(5)->create();
+        // Lead::factory(5)->create();
+        // Business::factory(5)->create()->each(function ($model, $index) {
+        //     $model->name_en = 'Business-' . ($index + 1);
+        //     $model->save();
+        // });
         $this->call([
             SectionSeeder::class,
             SettingSeeder::class,

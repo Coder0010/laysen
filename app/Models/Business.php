@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 use MkamelMasoud\StarterCoreKit\Core\BaseEntity;
 
 /**
@@ -35,4 +36,19 @@ class Business extends BaseEntity
     protected $casts = [
         'type' => \App\Http\Enums\BusinessTypeEnum::class,
     ];
+
+//    public function getFileAttribute(?string $value): string
+//    {
+//        if ($value === null || trim($value) === '') {
+//            return 'https://fastly.picsum.photos/id/1074/400/400.jpg?hmac=eH9O4qH8NQGitzB3QaCq9jrbDZr7KQkaW_w17w0uoGM';
+//        }
+//        if (str_starts_with($value, 'http://') || str_starts_with($value, 'https://')) {
+//            return $value;
+//        }
+//        if (Storage::disk('public')->exists($value)) {
+//            return asset('storage/' . ltrim($value, '/'));
+//        }
+//
+//        return 'https://fastly.picsum.photos/id/1074/400/400.jpg?hmac=eH9O4qH8NQGitzB3QaCq9jrbDZr7KQkaW_w17w0uoGM';
+//    }
 }
