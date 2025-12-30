@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('name_en')->nullable();
             $table->string('name_ar')->nullable();
-            $table->string('description_en')->nullable();
-            $table->string('description_ar')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_ar')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
